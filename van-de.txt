@@ -1,0 +1,6 @@
+﻿
+-Gọi chương trình bằng PHP
+-Đọc tệp bằng PHP
+-Thêm kì thi
+-Xoá kì thi
+-Sửa kì thi + thêm/bớt thí sinh/bài tập
