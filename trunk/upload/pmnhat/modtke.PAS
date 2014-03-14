@@ -5,16 +5,17 @@
      n:integer;
 
  Procedure Nhap;
- var i:integer;
+ var i:integer;f:text;
  begin
-
-      readln(n);
+	assign(f,'modtke.inp');
+	reset(f);
+      readln(f,n);
       for i:= 1 to n do
-         read(a[i]);
-
+         read(f,a[i]);
+	close(f);
  end;
  Procedure Xuli;
- var i,j,k,l:integer;
+ var i,j,k,l:integer;f:text;
  begin
     fillchar(f,sizeof(f),0);
     for i:= 1 to n do
@@ -31,9 +32,11 @@
              k:=f[i];
              l:=i;
           end;
-
+	assign(f,'modtke.out');
+	rewrite(f);
        
-       writeln(k+1);writeln(a[l]);
+       writeln(f,k+1);writeln(f,a[l]);
+	close(f);
 
  end;
  begin
