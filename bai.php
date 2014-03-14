@@ -1,5 +1,5 @@
 ﻿<?php
-echo "<html><head><title>Bài tập</title></head><body>";
+echo "<html><head><title>Bài toán</title></head><body>";
 
 if (isset($_POST['chon'])) {
 	redirect("?b=".$_POST['maso'],1);
@@ -9,15 +9,17 @@ if (isset($_POST['nop'])) {
 	$baitap = $_POST['baitap'];
 	$ufile = uploadFile("nfile","upload",$sbd,defined("DEBUG"));
 	if ($ufile) {
-		//exec("D:\DUAN\pascal\cham-thi-tu-dong\console\chamtudong.exe ");
+		exec("D:\DUAN\pascal\cham-thi-tu-dong\console\chamtudong.exe ".__DIR__ ."\\upload\\$sbd\\$ufile",$ketqua);
 		echo "Đã nộp xong.<br/>".$sbd." Nộp tập tin : ".$ufile;
-		echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả</a></div>";
+		echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
+		echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
 		echo "<div><a href='?b=$baitap'>Quay lại bài toán</a></div>";
-		redirect("?b=$baitap",30);
+		
+		//redirect("?b=$baitap",30);
 	}
 	else echo "THẤT BẠI";
 } else if (isset($_GET['b'])) {
-	echo "BÀI TẬP<br/>";
+	echo "BÀI TOÁN<br/>";
 	$bai=$_GET['b'];
 	include(__DIR__ . "\\baitoan\\$bai\\index.html");
 	echo "<hr/>NỘP BÀI<br/>";
@@ -59,6 +61,7 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 					$filename = $fileinfo['filename']."_$i.".$fileinfo['extension'];
 					$i++;
 				}
+				$filename=strtolower($filename);
 				move_uploaded_file($_FILES[$uname]["tmp_name"], $folder. "/" . $filename);
 				return $filename;
 			}
