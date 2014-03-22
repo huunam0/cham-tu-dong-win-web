@@ -1,18 +1,27 @@
 ﻿<?php
-echo "<html><head><title>Mã nguồn</title></head><body>";
+echo "<html><head><title>So sánh output</title></head><body>";
 include("thamso.php");
 if (isset($_POST['chon'])) {
 	redirect("?bd=".$_POST['maso'],1);
 }
-if (!($local||$manguon)) exit("Bạn không có quyền xem");
+if (!($local||$doichieu)) exit('Bạn không có quyền xem');
 if (isset($_GET['bd'])) { //co so bao danh
 	$sbd = $_GET['bd'];
 	if (isset($_GET['f'])) { //xem 1 bai nop cu the
 		$tep = $_GET['f'];
-		echo "NỘI DUNG TỆP <a href='kq.php?bd=".$sbd."&f=".$tep."'>$tep</a> (".date("d/m/Y H:i:s", filectime(__DIR__ ."\\upload\\$sbd\\".$tep)).") CỦA SBD: <a href='kq.php?bd=".$sbd."'>$sbd</a> <hr/>";
-		echo "<div><pre>";
-		includeornot(__DIR__ ."\\upload\\$sbd\\".$tep,"không có tệp");
-		echo "</pre></div>";
+		$test = $_GET['t'];
+		echo "SO SÁNH OUTPUT $test BÀI <a href='kq.php?bd=".$sbd."&f=".$tep."'>$tep</a> CỦA SBD: <a href='kq.php?bd=".$sbd."'>$sbd</a> <hr/>";
+		if (strpos($tep,"_")!==false)  
+			$thumuc=substr($tep,0,strpos($tep,"_"));
+		else
+			$thumuc=substr($tep,0,strpos($tep,"."));
+		echo "<table border=1><tr><td>output mẫu</td><td>kết quả chạy</td></tr><tr><td><pre>";
+		
+		includeornot(__DIR__ ."\\baitoan\\$thumuc\\$test.out","không có tệp");
+		//echo __DIR__ ."\\baitoan\\$thumuc\\$test.out";
+		echo "</pre></td><td><pre>";
+		includeornot(__DIR__ ."\\upload\\$sbd\\".str_replace(".pas","_$test.txt", $tep),"không có tệp");
+		echo "</pre></td></tr></table>";
 	} else { //xem tat ca ket qua
 		echo "<div>Tất cả các bài nộp của sbd: $sbd</div>";
 		if ($handle = opendir(__DIR__ ."\\upload\\$sbd")) {

@@ -9,10 +9,14 @@ if (isset($_POST['nop'])) {
 	$baitap = $_POST['baitap'];
 	$ufile = uploadFile("nfile","upload",$sbd,defined("DEBUG"));
 	if ($ufile) {
-		exec("D:\DUAN\pascal\cham-thi-tu-dong\console\chamtudong.exe ".__DIR__ ."\\upload\\$sbd\\$ufile",$ketqua);
 		echo "Đã nộp xong.<br/>".$sbd." Nộp tập tin : ".$ufile;
-		echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
-		echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
+		if (strpos($ufile,'.pas')!==false) {
+			exec(__DIR__ ."\\chamtudong.exe ".__DIR__ ."\\upload\\$sbd\\$ufile",$ketqua);
+			echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
+			echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
+		}
+		else
+			echo "Chưa hỗ trợ chấm tự động định dạng tệp này";
 		echo "<div><a href='?b=$baitap'>Quay lại bài toán</a></div>";
 		
 		//redirect("?b=$baitap",30);

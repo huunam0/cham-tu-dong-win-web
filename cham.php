@@ -1,6 +1,6 @@
 ﻿<?php
-echo "<html><head><title>Kết quả</title><meta http-equiv='refresh' content='30'/></head><body>";
-
+echo "<html><head><title>Kết quả</title><meta http-equiv='refresh' content='60'/></head><body>";
+include("thamso.php");
 if (isset($_POST['chon'])) {
 	redirect("?bd=".$_POST['maso'],1);
 }
@@ -8,16 +8,14 @@ if (isset($_GET['bd'])) { //co so bao danh
 	$sbd = $_GET['bd'];
 	if (isset($_GET['f'])) { //xem 1 bai nop cu the
 		$tep = $_GET['f'];
-		echo "KẾT QUẢ NỘP BÀI $tep CỦA SBD: $sbd <hr/>";
-		echo "<div><h2>Kết quả chạy chương trình</h2><pre>";
-		includeornot(__DIR__ ."\\upload\\$sbd\\".str_replace(".pas","_kq.txt",$tep),"không có");
-		echo "</pre></div>";
-		echo "<div><h2>Lỗi khi chạy chương trình</h2><pre>";
-		includeornot(__DIR__ ."\\upload\\$sbd\\".str_replace(".pas","_chay.txt",$tep),"không có");
-		echo "</pre></div>";
-		echo "<div><h2>Lỗi biên dịch chương trình</h2><pre>";
-		includeornot(__DIR__ ."\\upload\\$sbd\\".str_replace(".pas","_dich.txt",$tep),"không có");
-		echo "</pre></div>";
+		echo "KẾT QUẢ NỘP BÀI ";
+		if (strpos($tep,'.pas')!==false) {
+			exec(__DIR__ ."\\chamtudong.exe ".__DIR__ ."\\upload\\$sbd\\$tep",$ketqua);
+			echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
+			echo "<div><a href='kq.php?bd=$sbd&f=$tep'>Xem kết quả chi tiết</a></div>";
+		}
+		else
+			echo "Chưa hỗ trợ chấm tự động định dạng tệp này";
 		
 	} else { //xem tat ca ket qua
 		echo "<div>Tất cả các bài nộp của sbd: $sbd</div>";
@@ -27,7 +25,7 @@ if (isset($_GET['bd'])) { //co so bao danh
 			{
 				if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'pas')
 				{
-					echo '<li><a href="?bd='.$sbd.'&f='.$file.'">'.$file.'</a></li>';
+					echo '<li><a href="?bd='.$sbd.'&f='.$file.'">'.$file.'</a> ('.date("d/m/Y H:i:s", filectime(__DIR__ ."\\upload\\$sbd\\".$file)).')</li>';
 				}
 			}
 			closedir($handle);
@@ -35,10 +33,13 @@ if (isset($_GET['bd'])) { //co so bao danh
 		}
 	}
 } else { //khong co sbd -> chon
-	echo "<form action='' method='post'>";
-	echo "Chọn số báo danh: <input name='maso' type='text' size='9'>";
-	echo " <input name='chon' type='submit' value='Xem'>";
-	echo "</form>";
+	echo "Chọn số báo danh<ul>";
+	foreach (glob(__DIR__ ."\\upload\\*",GLOB_ONLYDIR) as $filename) {
+		//echo "$filename size \n";
+		$filen=basename($filename);
+		echo "<li><a href='?bd=".$filen."'>$filen</a></li>";
+	}
+	echo "</ul>";
 }
 echo "</body></html>";
 function includeornot($tenfile,$thongbao="")
