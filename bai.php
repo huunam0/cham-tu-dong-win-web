@@ -25,7 +25,8 @@ if (isset($_POST['nop'])) {
 } else if (isset($_GET['b'])) {
 	echo "BÀI TOÁN<br/>";
 	$bai=$_GET['b'];
-	include(__DIR__ . "\\baitoan\\$bai\\index.html");
+	//include("baitoan//$bai//index.html");
+	echo "<iframe src='baitoan/".$bai."/index.html' width='1000' height='520'></iframe>";
 	echo "<hr/>NỘP BÀI<br/>";
 	echo "<form action='' method='post' enctype='multipart/form-data'>";
 	echo "Số báo danh: <input name='sobd' type='text' size='9'>";
