@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h2>Chọn quà lớn nhất không có 3 món liên tiếp</h2>
+<div id="goiy"><h3>Gợi ý:</h3>
+	<p>Gọi C[i] là tổng giá trị lớn nhất khi chọn quà trong các món từ 1 đến i và bắt buộc <strong>phải chọn</strong> món thứ i.</p>
+	<p>Gọi K[i] là tổng giá trị lớn nhất khi chọn quà trong các món từ 1 đến i và bắt buộc <strong>không</strong> chọn món thứ i.</p>
+	<p>Khi đó, tổng giá trị lớn nhất là Max(C[n], K[n])</p>
+	<p>* Cách tính C[i] và K[i]:</p>
+	<p>C[1]:=A[1]; K[1]:=0;</p>
+	<p>C[2]:=A[2]+A[1]; K[2]:=A[1];</p>
+	<p>Ta sẽ tính C[i] với i&gt;2:</p>
+	<p>Có 2 trường hợp xảy ra:</p>
+	<p>- Có chọn món thứ i-1, khi đó thì món thứ i-2 sẽ không được chọn. Do đó: C[i] = A[i] + A[i-1] + K[i-2]</p>
+	<p>- Không chọn món thứ i-1, ta có: C[i] = A[i] + K[i-1]</p>
+	<p>Tóm lại, C[i] = A[i] + Max(A[i-1]+K[i-2],K[i-1]);</p>
+	<p>Còn K[i] = max(C[i-1],K[i-1]);</p>
+	<p>* Nhận xét:</p>
+	<p>- Nếu K[i]&gt;C[i] thì chắc chắn món thứ i không được chọn</p>
+	<p>- Không thể có trường hợp không chọn 3 món liên tiếp (vì có thể chọn thêm món giữa).</p>
+	<p>* Lần ngược để tìm các món được chọn:</p>
+	<p>B1: Tìm món được chọn sau cùng: trong khi K[n]&gt;C[n] thì giảm n đi 1 đơn vị (n:=n-1).</p>
+<p>B2: Ghi nhận món thứ n</p>
+	<p>B3: Đặt t = C[n]-A[n]; p = n-1;</p>
+	<p>B4: Trong khi t&gt;0, thực hiện:</p>
+	<p>- Nếu t &gt; K[p] thì  ghi nhận món thứ p và giảm t = t-A[p]; </p>
+	<p>- Giảm p = p-1;</p>
+</div>
+
+</div>
+<div class="manguon"> <h3>Mã nguồn:</h3> 
+Chưa có
+<br></div>
+
+</body>
+</html>
