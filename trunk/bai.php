@@ -1,6 +1,7 @@
 ﻿<?php
 echo "<html><head><title>Bài toán</title></head><body>";
-
+include_once ("funcs.php");
+$ds = dirspace();
 if (isset($_POST['chon'])) {
 	redirect("?b=".$_POST['maso'],1);
 }
@@ -11,7 +12,7 @@ if (isset($_POST['nop'])) {
 	if ($ufile) {
 		echo "Đã nộp xong.<br/>".$sbd." Nộp tập tin : ".$ufile;
 		if (strpos($ufile,'.pas')!==false) {
-			exec(__DIR__ ."\\chamtudong.exe ".__DIR__ ."\\upload\\$sbd\\$ufile",$ketqua);
+			exec(__DIR__ . $ds ."chamtudong.exe ".__DIR__ . $ds ."upload" . $ds .$sbd. $ds .$ufile,$ketqua);
 			echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
 			echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
 		}
@@ -50,10 +51,12 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 				if ($debug) echo "Upload file with error : " . $_FILES[$uname]["error"] . "<br />";
 				return "";
 			} else {
-				if ($debug) echo "Upload: " . $_FILES[$uname]["name"] . "<br />";
-				if ($debug) echo "Type: " . $_FILES[$uname]["type"] . "<br />";
-				if ($debug) echo "Size: " . ($_FILES[$uname]["size"] / 1024) . " Kb<br />";
-				if ($debug) echo "Temp file: " . $_FILES[$uname]["tmp_name"] . "<br />";
+				if ($debug) {
+					echo "Upload: " . $_FILES[$uname]["name"] . "<br />";
+					echo "Type: " . $_FILES[$uname]["type"] . "<br />";
+					echo "Size: " . ($_FILES[$uname]["size"] ) . " Bytes<br />";
+					echo "Temp file: " . $_FILES[$uname]["tmp_name"] . "<br />";
+				}
 				$filename = $_FILES[$uname]["name"];
 				$i=1;
 				if (!file_exists($folder."/".$sbd)) mkdir($folder."/".$sbd);
@@ -81,11 +84,5 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 
 
 
-function redirect($location, $delaytime = 0) {
-    if ($delaytime>0) {    
-        header( "refresh: $delaytime; url='".str_replace("&amp;", "&", $location)."'" );
-    } else {
-        header("Location: ".str_replace("&amp;", "&", $location));
-    }    
-}
+
 ?>
