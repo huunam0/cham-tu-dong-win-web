@@ -7,26 +7,26 @@
 <h2>Bữa tiệc không thuốc lá</h2>
 <div id="goiy"><h3>Gợi ý:</h3>
 	<p>Gọi xâu S chứa trạng thái 0,1</p>
-	<p>Ta cần tìm cách đổi chỗ ít nhất. Gọi trạng thái sau khi đổi chỗ là P thì S và P có nhiều vị trí trùng nhau nhất và trong xâu P không có 2 kí tự 1 đứng liền nhau (kể cả vị trí 1 và l).</p>
+	<p>Ta cần tìm cách đổi chỗ ít nhất. Gọi trạng thái sau khi đổi chỗ là P thì S và P có nhiều vị trí trùng nhau nhất và trong xâu P không có 2 kí tự 1 đứng liền nhau (kể cả vị trí 1 và <i>l</i>).</p>
 	<p>Nếu có xâu P thì ta dễ dàng tìm được các cặp vị trí cần đổi chỗ (và tất nhiên số lần đổi chỗ cũng là ít nhất)</p>
 	<p>Sau đây ta trình bày thuật toán tìm xâu P.</p>
 	<p>(bổ sung kí tự thứ 1 vào cuối xâu S.)</p>
-	<p>Gọi n là số kí tự 1 (số người hút thuốc lá), l là chiều dài xâu S (số người tham dự)</p>
+	<p>Gọi n là số kí tự 1 (số người hút thuốc lá), <i>l</i> là chiều dài xâu S (số người tham dự)</p>
 	<p>Trong tất cả các xâu thoả mãn 3 điều kiện:</p>
 	<p>- Độ dài bằng i;</p>
 	<p>- Có đúng x kí tự 1;</p>
 	<p>- Kí tự cuối cùng là b (b=0/1)</p>
 	<p>Chọn 1 xâu có nhiều vị trí trùng  với xâu S[1..i] nhất, ta gọi T[b,x,i] là số vị trí trùng nhau đó.</p>
 	<p>Nếu đã tính xong mảng T thì:</p>
-	<p>- Nếu T[0,n,l]&gt;T[1,n,l] thì kí tự cuối cùng là 0 và lần ngược lại để tìm xâu</p>
-	<p>- Nếu T[0,n,l]&lt;T[1,n,l] thì chọn xâu có kí tự cuối là 1 và lần ngược để tìm xâu p</p>
+	<p>- Nếu T[0,n,<i>l</i>]&gt;T[1,n,<i>l</i>] thì kí tự cuối cùng là 0 và lần ngược lại để tìm xâu</p>
+	<p>- Nếu T[0,n,<i>l</i>]&lt;T[1,n,<i>l</i>] thì chọn xâu có kí tự cuối là 1 và lần ngược để tìm xâu p</p>
 	<p>* Cách tính mảng T:</p>
 	<p>T[0,0,1]=S[1];</p>
 	<p>T[0,0,i]=(1-S[i])+K[0,0,i-1];</p>
 	<p>T[0,x,i] = Max(T[0,x,i-1],T[1,x,i-1]) + (1-S[i])</p>
 	<p>T[1,x,i]=T[0,x-1,i-1]+S[i]</p>
 	<p>* Nhận xét:</p>
-<p>- Nếu 2*n&gt;l thì không có cách bố trí (đáp án -1)</p>
+<p>- Nếu 2*n&gt;<i>l</i> thì không có cách bố trí (đáp án -1)</p>
 	<p>- </p>
 	<p>* Lần ngược để tìm các món được chọn:</p>
 	<p>&nbsp;</p>
