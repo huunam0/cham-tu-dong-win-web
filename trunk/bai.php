@@ -1,5 +1,6 @@
 ﻿<?php
 echo "<html><head><title>Bài toán</title></head><body>";
+include_once ("thamso.php");
 include_once ("funcs.php");
 $ds = dirspace();
 if (isset($_POST['chon'])) {
@@ -28,6 +29,22 @@ if (isset($_POST['nop'])) {
 	$bai=$_GET['b'];
 	//include("baitoan//$bai//index.html");
 	echo "<iframe src='baitoan/".$bai."/index.html' width='1000' height='520'></iframe>";
+	if ($xemtest) {
+		if ($handle = opendir(__DIR__ .$ds."baitoan".$ds.$bai)) {
+			echo "<div id='cacbotest'>Một số bộ test:<ol>";
+			$dem=1;
+			while ((false !== ($file = readdir($handle)))&&($dem<=$xemtest))
+			{
+				if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'inp')
+				{
+					echo '<li><a href="baitoan/'.$bai.'/'.$file.'" download="'.$bai.'.inp">'.substr($file,0,strrpos($file, '.')).'</a></li>';
+					$dem++;
+				}
+			}
+			closedir($handle);
+			echo "</ol></div>";
+		}
+	}
 	echo "<hr/>NỘP BÀI<br/>";
 	echo "<form action='' method='post' enctype='multipart/form-data'>";
 	echo "Số báo danh: <input name='sobd' type='text' size='9'>";
