@@ -1,5 +1,5 @@
 ﻿<?php
-echo "<html><head><title>Bài toán</title></head><body>";
+echo "<html><head><title>Bài toán</title><meta name='author' content='Tran Huu Nam'></head><body>";
 include_once ("thamso.php");
 include_once ("funcs.php");
 $ds = dirspace();

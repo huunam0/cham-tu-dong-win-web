@@ -1,5 +1,5 @@
 ﻿<?php
-echo "<html><head><title>Kết quả</title></head>";
+echo "<html><head><title>Kết quả</title><meta name='author' content='Tran Huu Nam'></head>";
 echo "<script src='ckeditor/ckeditor.js'></script>";
 echo "<body>";
 include("thamso.php");
@@ -63,7 +63,7 @@ if (!isset($_GET['act'])) {
 } else {
 	if (!isset($_POST['moi'])) {
 		echo "<h2>Thêm bài toán mới</h2>";
-		echo "<form>";
+		echo "<form action='?act=new' method='post'>";
 		echo "<p>Mã bài toán: <input type='text' name='mabai'> (tối thiểu 3 kí tự, tối đa 8 kí tự, không dùng khoảng trống)</p>";
 		echo "<p>Mô tả ngắn gọn: <input type='text' name='mota' size='100'> (tối đa 200 kí tự, dùng tiếng Việt không dấu)</p>";
 		echo "<p>Kiểu chấm: <select name='kieucham'><option>1</option><option>2</option><option>3</option><option>4</option></select></p>";
@@ -72,7 +72,7 @@ if (!isset($_GET['act'])) {
 		echo "<p>Tên tệp dữ liệu vào (input): <input type='text' name='tepvao' value='*.inp'></p>";
 		echo "<p>Tên tệp dữ liệu ra (output): <input type='text' name='tepra' value='*.out'></p>";
 		echo "<p>Nội dung bài toán:</p>";
-		echo "<p><textarea class='ckeditor' name='noidung' cols='100' rows='10'>";
+		echo "<p><textarea class='ckeditor' name='noidung' >";
 		echo "&lt;h2&gt;Tên bài toán&lt;/h2&gt;";
 		echo "&lt;div id='mota'&gt; Mô tả &lt;/div&gt;";
 		echo "&lt;div id='yeucau'&gt; &lt;h3&gt;Yêu cầu:&lt;/h3&gt; Nêu yêu cầu &lt;/div&gt;";
@@ -90,6 +90,15 @@ if (!isset($_GET['act'])) {
 		$mabai=$_POST['mabai'];
 		if (file_exists(__DIR__ . $ds . "baitoan" .$ds . $mabai))
 			exit("Mã bài toán này đã tồn tại.");
+		mkdir(__DIR__ . $ds . "baitoan" .$ds . $mabai);
+		$f = __DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . "chamthi.inf";
+		file_put_contents($f,$_POST['mota']."\n");
+		file_put_contents($f,$_POST['kieucham']."\n".$_POST['ghthoigian']."\n".$_POST['ghbonho']."\n".$_POST['tepvao']."\n".$_POST['tepra'],FILE_APPEND);
+		$f = __DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . "index.html";
+		file_put_contents($f,"<!DOCTYPE HTML>\n<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'></head><body>".$_POST['noidung']."</body></html>");
+		echo "Đã tạo xong bài toán $mabai";
+		redirect($_SERVER['PHP_SELF']."?b=".$mabai,3);
+		
 	}
 }
 ?>

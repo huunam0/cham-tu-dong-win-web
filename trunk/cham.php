@@ -1,5 +1,5 @@
 ﻿<?php
-echo "<html><head><title>Kết quả</title><meta http-equiv='refresh' content='60'/></head><body>";
+echo "<html><head><title>Kết quả</title><meta http-equiv='refresh' content='60'/><meta name='author' content='Tran Huu Nam'></head><body>";
 include("thamso.php");
 if (isset($_POST['chon'])) {
 	redirect("?bd=".$_POST['maso'],1);
