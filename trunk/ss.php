@@ -15,13 +15,16 @@ if (isset($_GET['bd'])) { //co so bao danh
 			$thumuc=substr($tep,0,strpos($tep,"_"));
 		else
 			$thumuc=substr($tep,0,strpos($tep,"."));
-		echo "<table border=1><tr><td>output mẫu</td><td>kết quả chạy</td></tr><tr><td><pre>";
+		echo "<table border=1><tr><td>output mẫu</td><td>kết quả chạy</td></tr><tr><td valign='top'><pre>";
 		
 		includeornot(__DIR__ ."\\baitoan\\$thumuc\\$test.out","không có tệp");
 		//echo __DIR__ ."\\baitoan\\$thumuc\\$test.out";
-		echo "</pre></td><td><pre>";
+		echo "</pre></td><td valign='top'><pre>";
 		includeornot(__DIR__ ."\\upload\\$sbd\\".str_replace(".pas","_$test.txt", $tep),"không có tệp");
 		echo "</pre></td></tr></table>";
+		echo "<div style='margin:20px;'>";
+		echo "<a href='test.php?b=$thumuc&f=$test'>Xem bộ test</a>";
+		echo "</div>";
 	} else { //xem tat ca ket qua
 		echo "<div>Tất cả các bài nộp của sbd: $sbd</div>";
 		if ($handle = opendir(__DIR__ ."\\upload\\$sbd")) {

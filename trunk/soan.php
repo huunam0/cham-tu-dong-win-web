@@ -1,6 +1,7 @@
 ﻿<?php
 echo "<html><head><title>Sửa nội dung bài toán</title><meta name='author' content='Tran Huu Nam'></head>";
-echo "<script src='ckeditor/ckeditor.js'></script>";
+if (!isset($_GET['plain'])) 
+	echo "<script src='ckeditor/ckeditor.js'></script>";
 echo "<body>";
 include("thamso.php");
 include_once ("funcs.php");
