@@ -5,9 +5,11 @@ include("thamso.php");
 include_once ("funcs.php");
 $ds = dirspace();
 if (!$local) exit("Khu vực dành riêng");
-if (isset($_GET['act']) && isset($_GET['b'])) { //da chon loai thao tac
+if (!isset($_GET['act'])) $act="";
+else $act=$_GET['act'];
+if (isset($_GET['b'])) { //da chon loai thao tac
 	$mabai=$_GET['b'];
-	if ($_GET['act']=="new") {//tao moi
+	if ($act=="new") {//tao moi
 		if (isset($_POST['them'])) {
 			$i=1;
 			while (file_exists( __DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . "test$i.inp")) {
@@ -28,7 +30,7 @@ if (isset($_GET['act']) && isset($_GET['b'])) { //da chon loai thao tac
 			echo "</form>";
 		}
 		
-	} else if ($_GET['act']=="edit") {//sua
+	} else if ($act=="edit") {//sua
 		if (!isset($_GET['f'])) exit("Chưa chọn bộ test để làm việc");
 		$t = $_GET['f'];
 		if (isset($_POST['sua'])) {
@@ -50,13 +52,15 @@ if (isset($_GET['act']) && isset($_GET['b'])) { //da chon loai thao tac
 	} else {//xem
 		if (!isset($_GET['f'])) exit("Chưa chọn bộ test để làm việc");
 		$t = $_GET['f'];
-		echo "<h2>Xem bộ test cho bài toán $mabai</h2>";
-		echo "<table width='100%'><tr><td width='70%'>INPUT</td><td width='30%'>OUTPUT</td></tr>";
+		echo "<h2>Xem bộ test <u>$t</u> cho bài toán <a href='bai.php?b=$mabai'>$mabai</a></h2>";
+		echo "<table width='100%' border='0'><tr><td width='70%'>INPUT</td><td width='30%'>OUTPUT</td></tr>";
 		echo "<tr><td><pre>".file_get_contents(__DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . $t.".inp")."</pre></td>";
 		echo "<td><pre>".file_get_contents(__DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . $t.".out")."</pre></td></tr>";
 		echo "</table>";
-		echo "<p><a href='?act=edit&b=".$mabai."&f=".$t."'>Sửa  bộ test này.</a></p>";
-		echo "<p><a href='?b=".$mabai."&act=new'>Thêm bộ test khác</a></p>";
+		if ($act) {
+			echo "<p><a href='?act=edit&b=".$mabai."&f=".$t."'>Sửa  bộ test này.</a></p>";
+			echo "<p><a href='?b=".$mabai."&act=new'>Thêm bộ test khác</a></p>";
+		}
 	}
 } else {
 	echo "Không tìm thấy bộ test/bài toán";

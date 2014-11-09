@@ -8,22 +8,27 @@ if (isset($_POST['chon'])) {
 }
 if (isset($_POST['nop'])) {
 	$sbd = $_POST['sobd'];
-	$baitap = $_POST['baitap'];
-	$ufile = uploadFile("nfile","upload",$sbd,defined("DEBUG"));
-	if ($ufile) {
-		echo "Đã nộp xong.<br/>".$sbd." Nộp tập tin : ".$ufile;
-		if (strpos($ufile,'.pas')!==false) {
-			exec(__DIR__ . $ds ."chamtudong.exe ".__DIR__ . $ds ."upload" . $ds .$sbd. $ds .$ufile,$ketqua);
-			echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
-			echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
+	if ($sbd) {
+		$baitap = $_POST['baitap'];
+		$ufile = uploadFile("nfile","upload",$sbd,defined("DEBUG"));
+		if ($ufile) {
+			echo "Đã nộp xong.<br/>[".$sbd."] Nộp tập tin : [".$ufile."]";
+			if (!isset($_POST['khongcham']))
+			if (strpos($ufile,'.pas')!==false) {
+				exec(__DIR__ . $ds ."chamtudong.exe ".__DIR__ . $ds ."upload" . $ds .$sbd. $ds .$ufile,$ketqua);
+				echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
+				echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
+			}
+			else
+				echo "Chưa hỗ trợ chấm tự động định dạng tệp này";
+			echo "<div><a href='?b=$baitap'>Quay lại bài toán</a></div>";
+			
+			//redirect("?b=$baitap",30);
 		}
-		else
-			echo "Chưa hỗ trợ chấm tự động định dạng tệp này";
-		echo "<div><a href='?b=$baitap'>Quay lại bài toán</a></div>";
-		
-		//redirect("?b=$baitap",30);
+		else echo "THẤT BẠI";
+	} else {
+		echo "Cần nhập tên hoặc số báo danh: dùng các chữ cái a-z, chữ số 0-9; không được có dấu cách";
 	}
-	else echo "THẤT BẠI";
 } else if (isset($_GET['b'])) {
 	echo "BÀI TOÁN<br/>";
 	$bai=$_GET['b'];
@@ -47,8 +52,9 @@ if (isset($_POST['nop'])) {
 	}
 	echo "<hr/>NỘP BÀI<br/>";
 	echo "<form action='' method='post' enctype='multipart/form-data'>";
-	echo "Số báo danh: <input name='sobd' type='text' size='9'>";
-	echo "./ Tập tin bài làm: <input name='nfile' type='file'  id='nfile'>";
+	echo "Số báo danh <i>(hoặc tên không dấu, không cách)</i>: <input name='sobd' type='text' size='9'>";
+	echo ". . . . . Tập tin bài làm <i>(phải đặt tên là <span style='color:red;'>$bai.pas</span>)</i>: <input name='nfile' type='file'  id='nfile'>";
+	echo " <input name='khongcham' type='checkbox'>Không chấm";
 	echo " <input name='baitap' type='hidden' value='$bai'>";
 	echo " <input name='nop' type='submit' value='Nộp bài'>";
 	echo "</form>";
@@ -88,6 +94,8 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 				}
 				$filename=strtolower($filename);
 				move_uploaded_file($_FILES[$uname]["tmp_name"], $folder. "/" . $filename);
+				//$f = __DIR__ . $ds .  "upload.log";
+				file_put_contents(__DIR__ .  "\upload.log","<p><a href='kq.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename .date(' (Y-m-d H:i:s)'). "</a></p>\n",FILE_APPEND);
 				return $filename;
 			}
 		} else {

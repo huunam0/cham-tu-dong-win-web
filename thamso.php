@@ -4,8 +4,9 @@ $whitelist = array(
     '::1'
 );
 $local = in_array($_SERVER['REMOTE_ADDR'], $whitelist);
-$doichieu = false;
-$manguon = false;
-$xemtest = 5; //so bo test duoc xem
+$doichieu = false; //thí sinh được doi chieu output sai
+$manguon = false; //thi sinh duoc xem ma nguon
+$thuattoan = false; //thi sinh duoc xem huong dan
+$xemtest = 2; //so bo test duoc xem
 
 ?>
