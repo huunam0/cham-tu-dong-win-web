@@ -11,13 +11,16 @@ if (!isset($_GET['act'])) {
 		$bai = $_GET['b'];
 		echo "<div id='tenbaitoan'>Mã bài toán: <a href='bai.php?b=$bai'>$bai</a></div>";
 		echo "<div id='thamsobaitoan'>";
+		$motakieu = array("", "Chỉ có 1 phương án đúng","3", "Liệt kê các phương án đúng theo thứ tự bất kì, có số lượng", "Liệt kê các phương án đúng theo thứ tự bất kì, không số lượng");
+		//echo($motakieu[1]);
 		$handle = @fopen(__DIR__ .$ds."baitoan".$ds.$bai.$ds."chamthi.inf","r");
 		//echo __DIR__ .$ds."baitoan".$ds.$bai.$ds."chamthi.inf";
 		if ($handle) {
 			$buffer = fgets($handle);
 			echo "<div>Mô tả về bài toán: $buffer</div>";
 			$buffer = fgets($handle);
-			echo "<div>Kiểu chấm: $buffer</div>";
+			echo "<div>Kiểu chấm: ".$buffer."</div>";
+			//echo htmlspecialchars($buffer);
 			$buffer = fgets($handle);
 			echo "<div>Giới hạn thời gian: $buffer ms</div>";
 			$buffer = fgets($handle);
