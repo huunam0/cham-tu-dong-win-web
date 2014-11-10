@@ -12,7 +12,7 @@ if (isset($_GET['bd'])) { //co so bao danh
 		if (strpos($tep,'.pas')!==false) {
 			exec(__DIR__ ."\\chamtudong.exe ".__DIR__ ."\\upload\\$sbd\\$tep",$ketqua);
 			echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
-			echo "<div><a href='kq.php?bd=$sbd&f=$tep'>Xem kết quả chi tiết</a></div>";
+			echo "<div><a href='ketqua.php?bd=$sbd&f=$tep'>Xem kết quả chi tiết</a></div>";
 		}
 		else
 			echo "Chưa hỗ trợ chấm tự động định dạng tệp này";

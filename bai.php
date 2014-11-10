@@ -95,7 +95,7 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 				$filename=strtolower($filename);
 				move_uploaded_file($_FILES[$uname]["tmp_name"], $folder. "/" . $filename);
 				//$f = __DIR__ . $ds .  "upload.log";
-				file_put_contents(__DIR__ .  "\upload.log","<p><a href='kq.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename .date(' (Y-m-d H:i:s)'). "</a></p>\n",FILE_APPEND);
+				file_put_contents(__DIR__ .  "\upload.log","<p><a href='ketqua.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename .date(' (Y-m-d H:i:s)'). "</a></p>\n",FILE_APPEND);
 				return $filename;
 			}
 		} else {
