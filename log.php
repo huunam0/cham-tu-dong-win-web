@@ -1,5 +1,5 @@
 ﻿<?php
-echo "<html><head><title>Các bài nộp</title><meta charset='utf-8'><meta http-equiv='refresh' content='8'></head><body>";
+echo "<html><head><title>Các bài nộp</title><meta charset='utf-8'><meta http-equiv='refresh' content='9'></head><body>";
 include("thamso.php");
 if (!($local||$doichieu)) exit('Bạn không có quyền xem');
 

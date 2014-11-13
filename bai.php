@@ -1,7 +1,9 @@
 ﻿<?php
 echo "<html><head><title>Bài toán</title><meta name='author' content='Tran Huu Nam'></head><body>";
+session_start();
 include_once ("thamso.php");
 include_once ("funcs.php");
+
 $ds = dirspace();
 if (isset($_POST['chon'])) {
 	redirect("?b=".$_POST['maso'],1);
@@ -51,13 +53,17 @@ if (isset($_POST['nop'])) {
 		}
 	}
 	echo "<hr/>NỘP BÀI<br/>";
-	echo "<form action='' method='post' enctype='multipart/form-data'>";
-	echo "Số báo danh <i>(hoặc tên không dấu, không cách)</i>: <input name='sobd' type='text' size='9'>";
-	echo ". . . . . Tập tin bài làm <i>(phải đặt tên là <span style='color:red;'>$bai.pas</span>)</i>: <input name='nfile' type='file'  id='nfile'>";
-	echo " <input name='khongcham' type='checkbox'>Không chấm";
-	echo " <input name='baitap' type='hidden' value='$bai'>";
-	echo " <input name='nop' type='submit' value='Nộp bài'>";
-	echo "</form>";
+	if ($tennd) {
+		echo "<form action='' method='post' enctype='multipart/form-data'>";
+		echo "Tên thí sinh: <input name='sobd' type='text' size='9' value='$tennd' disabled>";
+		echo ". . . . . Tập tin bài làm <i>(phải đặt tên là <span style='color:red;'>$bai.pas</span>)</i>: <input name='nfile' type='file'  id='nfile'>";
+		echo " <input name='khongcham' type='checkbox'>Không chấm";
+		echo " <input name='baitap' type='hidden' value='$bai'>";
+		echo " <input name='nop' type='submit' value='Nộp bài'>";
+		echo "</form>";
+	} else {
+		echo "<p><a href='dangnhap.php?r=bai.php?b=$bai'>Đăng nhập để nộp bài </a></p>";
+	}
 } else {
 	echo "<form action='' method='post'>";
 	echo "Mã số bài toán: <input name='maso' type='text' size='9'>";
@@ -95,7 +101,7 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 				$filename=strtolower($filename);
 				move_uploaded_file($_FILES[$uname]["tmp_name"], $folder. "/" . $filename);
 				//$f = __DIR__ . $ds .  "upload.log";
-				file_put_contents(__DIR__ .  "\upload.log","<p><a href='ketqua.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename .date(' (Y-m-d H:i:s)'). "</a></p>\n",FILE_APPEND);
+				file_put_contents(__DIR__ .  "\upload.log","<a href='ketqua.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename . "</a>".date(' (Y-m-d H:i:s) ').$MYIP."<br/>\n",FILE_APPEND);
 				return $filename;
 			}
 		} else {
