@@ -1,0 +1,20 @@
+<p>* <strong>Tìm đoạn ngắn nhất:</strong><br />
+Cho 2 chỉ số d, c chạy từ 1..n, tính tổng các phần tử từ A[d] đến A[c], nếu bằng 0 thì ghi nhận số lượng (c-d+1). So sánh với biến minkc để lưu lại.</p>
+
+<p><strong>* Thuật toán:</strong></p>
+
+<p>+ các biến:</p>
+
+<p>- d, c : chỉ số đầu/cuối của đoạn con đang xét.</p>
+
+<p>- minkc : độ dài ngắn nhất tìm được;</p>
+
+<p>- t : tổng các phần tử của A từ d..c</p>
+
+<p>+ Khởi tạo:</p>
+
+<p>d=1, c=1, t=A[1],minkc=n+1;</p>
+
+<p>hì nếu minkc &gt; c-d+1 thì gán minkc=c+d-1</p>
+
+<p>&nbsp;</p>

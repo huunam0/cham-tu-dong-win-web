@@ -1,0 +1,16 @@
+7
+test1: SAI
+Sai ket qua: "3 11"
+test2: SAI
+Thieu ket qua: "4 55"
+test3: SAI
+Thieu ket qua: "5 61"
+test4: SAI
+Thieu ket qua: "1 6"
+test5: SAI
+Thieu ket qua: "2 11"
+test6: SAI
+Thieu ket qua: "3 14"
+test7: SAI
+Thieu ket qua: "4 17"
+0

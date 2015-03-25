@@ -1,0 +1,8 @@
+4
+test1: DUNG
+test2: DUNG
+test3: SAI
+Sai ket qua: "-26"
+test4: SAI
+Sai ket qua: "72"
+2

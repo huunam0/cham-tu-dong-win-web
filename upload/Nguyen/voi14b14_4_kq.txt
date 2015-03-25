@@ -1,0 +1,5 @@
+2
+test1: DUNG
+test2: SAI
+Thieu ket qua: "-1"
+1

@@ -1,0 +1,9 @@
+Free Pascal Compiler version 2.6.4 [2014/06/14] for i386
+Copyright (c) 1993-2014 by Florian Klaempfl and others
+Target OS: Win32 for i386
+Compiling E:\www\chamtudong\upload\nam\modtke_1.pas
+modtke_1.pas(3,17) Error: Illegal expression
+modtke_1.pas(3,19) Error: Can't evaluate constant expression
+modtke_1.pas(3,19) Fatal: Syntax error, "]" expected but "OF" found
+Fatal: Compilation aborted
+Error: C:\lazarus\fpc\2.6.4\bin\i386-win32\ppc386.exe returned an error exitcode (normal if you did not specify a source file to be compiled)

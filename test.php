@@ -54,7 +54,7 @@ if (isset($_GET['b'])) { //da chon loai thao tac
 		$t = $_GET['f'];
 		echo "<h2>Xem bộ test <u>$t</u> cho bài toán <a href='bai.php?b=$mabai'>$mabai</a></h2>";
 		echo "<table width='100%' border='0'><tr><td width='70%'>INPUT</td><td width='30%'>OUTPUT</td></tr>";
-		echo "<tr><td><pre>".file_get_contents(__DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . $t.".inp")."</pre></td>";
+		echo "<tr valign='top'><td><pre>".file_get_contents(__DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . $t.".inp")."</pre></td>";
 		echo "<td><pre>".file_get_contents(__DIR__ . $ds . "baitoan" .$ds . $mabai . $ds . $t.".out")."</pre></td></tr>";
 		echo "</table>";
 		if ($act) {

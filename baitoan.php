@@ -17,22 +17,24 @@ if (!isset($_GET['act'])) {
 		//echo __DIR__ .$ds."baitoan".$ds.$bai.$ds."chamthi.inf";
 		if ($handle) {
 			$buffer = fgets($handle);
-			echo "<div>Mô tả về bài toán: $buffer</div>";
+			echo "<div>-Mô tả ngắn về bài toán: $buffer</div>";
 			$buffer = fgets($handle);
-			echo "<div>Kiểu chấm: ".$buffer."</div>";
+			echo "<div>-Kiểu chấm: ".$buffer."</div>";
 			//echo htmlspecialchars($buffer);
 			$buffer = fgets($handle);
-			echo "<div>Giới hạn thời gian: $buffer ms</div>";
+			echo "<div>-Giới hạn thời gian: $buffer ms</div>";
 			$buffer = fgets($handle);
-			echo "<div>Giới hạn bộ nhớ: $buffer (MB)</div>";
+			echo "<div>-Giới hạn bộ nhớ: $buffer (MB)</div>";
 			$buffer = fgets($handle);
-			echo "<div>Tên tệp input: <span id='gioihantg'>$buffer</span></div>";
+			echo "<div>-Tên tệp input: <span id='gioihantg'>$buffer</span></div>";
 			$buffer = fgets($handle);
-			echo "<div>Tên tệp output: <span id='gioihanbn'>$buffer</span></div>";
+			echo "<div>-Tên tệp output: <span id='gioihanbn'>$buffer</span></div>";
 			fclose($handle);
 		}
 		echo "</div>";
 		echo "<div><a href='soan.php?b=".$bai."'>Nội dung bài toán</a></div>";
+		echo "<div><a href='goiy.php?b=$bai&f=goiy.html'>Gợi ý</a></div>";
+		echo "<div><a href='sua.php?f=baitoan\\$bai\\sample.pas'>Mã nguồn</a></div>";
 		echo "<div id='cacbotest'>";
 		if ($handle = opendir(__DIR__ .$ds."baitoan".$ds.$bai)) {
 			echo "Các bộ test:<ol>";

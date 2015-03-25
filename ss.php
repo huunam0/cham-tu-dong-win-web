@@ -10,7 +10,7 @@ if (isset($_GET['bd'])) { //co so bao danh
 	if (isset($_GET['f'])) { //xem 1 bai nop cu the
 		$tep = $_GET['f'];
 		$test = $_GET['t'];
-		echo "SO SÁNH OUTPUT $test BÀI <a href='kq.php?bd=".$sbd."&f=".$tep."'>$tep</a> CỦA SBD: <a href='kq.php?bd=".$sbd."'>$sbd</a> <hr/>";
+		echo "SO SÁNH OUTPUT $test BÀI <a href='ketqua.php?bd=".$sbd."&f=".$tep."'>$tep</a> CỦA SBD: <a href='ketqua.php?bd=".$sbd."'>$sbd</a> <hr/>";
 		if (strpos($tep,"_")!==false)  
 			$thumuc=substr($tep,0,strpos($tep,"_"));
 		else

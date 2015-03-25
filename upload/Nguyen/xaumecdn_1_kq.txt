@@ -1,0 +1,12 @@
+5
+test1: SAI
+Sai ket qua: "TRUE TRUE FALSE TRUE FALSE"
+test2: SAI
+Sai ket qua: "TRUE TRUE TRUE"
+test3: SAI
+Sai ket qua: "FALSE"
+test4: SAI
+Sai ket qua: "FALSE FALSE"
+test5: SAI
+Sai ket qua: "TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE FALSE"
+0

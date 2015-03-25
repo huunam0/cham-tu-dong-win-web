@@ -1,0 +1,39 @@
+Program Chusotancung;
+uses crt;
+Const fi='CSTC.INP';
+fo='CSTC.OUT';
+Var a,b:longint;
+f:text;
+s:array[0..200] of longint;
+vt:array[0..99,1..2] of longint;
+nv:array[0..99] of longint;
+n:longint;
+kq:longint;
+Begin
+Assign(f,fi);
+reset(f);
+readln(f,a,b);
+a:=a mod 100;
+n:=0;
+s[0]:=1;
+fillchar(nv,sizeof(nv),0);
+kq:=0;
+nv[1]:=1;
+vt[1,1]:=0;
+repeat
+inc(n);
+s[n]:=(s[n-1]*a) mod 100;
+If nv[s[n]]<2 then inc(nv[s[n]]);
+vt[s[n],nv[s[n]]]:=n;
+If nv[s[n]]=2 then
+Begin
+kq:=s[vt[s[n],1]+(b-vt[s[n],1]) mod (vt[s[n],2]-vt[s[n],1])];
+break;
+End;
+Until false or (b=n);
+If (kq=0) and (a<>0) then kq:=s[b];
+Assign(f,fo);
+rewrite(f);
+write(f,kq);
+Close(f);
+End.
