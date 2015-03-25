@@ -1,0 +1,12 @@
+Free Pascal Compiler version 2.6.4 [2014/03/06] for i386
+Copyright (c) 1993-2014 by Florian Klaempfl and others
+Target OS: Win32 for i386
+Compiling C:\wamp\www\chamtudong\upload\Kiem\xaudx.pas
+xaudx.pas(18,8) Error: Identifier not found "i"
+xaudx.pas(18,7) Error: Ordinal expression expected
+xaudx.pas(18,7) Error: Illegal counter variable
+xaudx.pas(19,10) Error: Identifier not found "i"
+xaudx.pas(19,20) Error: Identifier not found "i"
+xaudx.pas(25) Fatal: Unexpected end of file
+Fatal: Compilation aborted
+Error: C:\FPC\2.6.4\bin\i386-Win32\ppc386.exe returned an error exitcode (normal if you did not specify a source file to be compiled)

@@ -1,0 +1,11 @@
+5
+test1: SAI
+Sai ket qua: "5"
+test2: SAI
+Sai ket qua: "4"
+test3: SAI
+Sai ket qua: "1"
+test4: SAI
+Sai ket qua: "2"
+test5: DUNG
+1

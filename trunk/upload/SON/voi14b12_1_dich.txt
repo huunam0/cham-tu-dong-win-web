@@ -1,0 +1,9 @@
+Free Pascal Compiler version 2.6.4 [2014/06/14] for i386
+Copyright (c) 1993-2014 by Florian Klaempfl and others
+Target OS: Win32 for i386
+Compiling E:\www\chamtudong\upload\son\voi14b12_1.pas
+voi14b12_1.pas(34,16) Error: Identifier not found "fi"
+voi14b12_1.pas(81,16) Error: Identifier not found "fo"
+voi14b12_1.pas(98) Fatal: There were 2 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: C:\lazarus\fpc\2.6.4\bin\i386-win32\ppc386.exe returned an error exitcode (normal if you did not specify a source file to be compiled)

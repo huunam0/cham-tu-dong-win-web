@@ -1,0 +1,7 @@
+4
+test1: DUNG
+test2: DUNG
+test3: DUNG
+test4: SAI
+Sai ket qua: "51"
+3

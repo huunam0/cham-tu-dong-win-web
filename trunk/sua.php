@@ -1,5 +1,7 @@
 ﻿<?php
-echo "<html><head><title>Sửa nội dung tập tin</title><meta charset='utf-8'><meta name='author' content='Trần Hữu Nam'></head>";
+echo "<html><head><title>Sửa nội dung tập tin</title><meta charset='utf-8'><meta name='author' content='Trần Hữu Nam'>";
+if (isset($_GET['html'])) echo "<script src='ckeditor/ckeditor.js'></script>";
+echo "</head>";
 echo "<body>";
 include("thamso.php");
 include_once ("funcs.php");
@@ -20,6 +22,7 @@ if (isset($_GET['f'])) { //da chon bai = bat buoc
 		echo "</textarea></p>";
 		echo "<input type='submit' name='sua' value='Lưu thay đổi'/>";
 		echo "</form>";
+		//echo __DIR__ . $ds . $tep ;
 	}
 } else {
 	echo "Không tìm thấy tập tin.";

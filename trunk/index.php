@@ -1,6 +1,6 @@
 ﻿<?php
 
-redirect("de.php?d=btbd811");
+redirect("de.php?d=btbd1511");
 
 function redirect($location, $delaytime = 0) {
     if ($delaytime>0) {    

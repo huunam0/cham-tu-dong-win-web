@@ -1,0 +1,9 @@
+Free Pascal Compiler version 2.6.4 [2014/06/14] for i386
+Copyright (c) 1993-2014 by Florian Klaempfl and others
+Target OS: Win32 for i386
+Compiling E:\www\chamtudong\upload\Nhat\bongden_1.pas
+bongden_1.pas(19,10) Warning: Function result does not seem to be set
+bongden_1.pas(61,1) Error: Illegal expression
+bongden_1.pas(61,7) Fatal: Syntax error, ")" expected but "identifier D" found
+Fatal: Compilation aborted
+Error: C:\lazarus\fpc\2.6.4\bin\i386-win32\ppc386.exe returned an error exitcode (normal if you did not specify a source file to be compiled)

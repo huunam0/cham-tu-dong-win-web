@@ -1,0 +1,6 @@
+2
+test1: SAI
+
+test2: SAI
+Thieu ket qua: "-1"
+0

@@ -1,0 +1,8 @@
+4
+test1: SAI
+
+test2: SAI
+Sai ket qua: "65535"
+test3: DUNG
+test4: DUNG
+2

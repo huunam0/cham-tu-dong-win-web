@@ -19,7 +19,7 @@ if (isset($_POST['nop'])) {
 			if (strpos($ufile,'.pas')!==false) {
 				exec(__DIR__ . $ds ."chamtudong.exe ".__DIR__ . $ds ."upload" . $ds .$sbd. $ds .$ufile,$ketqua);
 				echo "<hr/><div><pre>".implode(PHP_EOL,$ketqua)."</pre></div><hr/>";
-				echo "<div><a href='kq.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
+				echo "<div><a href='ketqua.php?bd=$sbd&f=$ufile'>Xem kết quả chi tiết</a></div>";
 			}
 			else
 				echo "Chưa hỗ trợ chấm tự động định dạng tệp này";
@@ -55,7 +55,7 @@ if (isset($_POST['nop'])) {
 	echo "<hr/>NỘP BÀI<br/>";
 	if ($tennd) {
 		echo "<form action='' method='post' enctype='multipart/form-data'>";
-		echo "Tên thí sinh: <input name='sobd' type='text' size='9' value='$tennd' disabled>";
+		echo "Tên thí sinh: $tennd<input name='sobd' type='hidden' size='9' value='$tennd'>";
 		echo ". . . . . Tập tin bài làm <i>(phải đặt tên là <span style='color:red;'>$bai.pas</span>)</i>: <input name='nfile' type='file'  id='nfile'>";
 		echo " <input name='khongcham' type='checkbox'>Không chấm";
 		echo " <input name='baitap' type='hidden' value='$bai'>";
@@ -101,7 +101,7 @@ function uploadFile($uname,$folder,$sbd,$debug=false) {
 				$filename=strtolower($filename);
 				move_uploaded_file($_FILES[$uname]["tmp_name"], $folder. "/" . $filename);
 				//$f = __DIR__ . $ds .  "upload.log";
-				file_put_contents(__DIR__ .  "\upload.log","<a href='ketqua.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename . "</a>".date(' (Y-m-d H:i:s) ').$MYIP."<br/>\n",FILE_APPEND);
+				file_put_contents(__DIR__ .  "\upload.log","<a target='xemketqua' href='ketqua.php?bd=$sbd&f=$filename'>". $sbd. " : " . $filename . "</a>".date(' (Y-m-d H:i:s) ').$_SERVER['REMOTE_ADDR']."<br/>\n",FILE_APPEND);
 				return $filename;
 			}
 		} else {

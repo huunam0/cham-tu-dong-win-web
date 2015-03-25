@@ -11,7 +11,7 @@ if (isset($_GET['bd'])) { //co so bao danh
 	$sbd = $_GET['bd'];
 	if (isset($_GET['f'])) { //xem 1 bai nop cu the
 		$tep = $_GET['f'];
-		echo "NỘI DUNG TỆP <a href='kq.php?bd=".$sbd."&f=".$tep."'>$tep</a> (".date("d/m/Y H:i:s", filectime(__DIR__ .$ds."upload".$ds.$sbd.$ds.$tep)).") CỦA SBD: <a href='kq.php?bd=".$sbd."'>$sbd</a> <hr/>";
+		echo "NỘI DUNG TỆP <a href='ketqua.php?bd=".$sbd."&f=".$tep."'>$tep</a> (".date("d/m/Y H:i:s", filectime(__DIR__ .$ds."upload".$ds.$sbd.$ds.$tep)).") CỦA SBD: <a href='ketqua.php?bd=".$sbd."'>$sbd</a> <hr/>";
 		echo "<div><pre>";
 		includeornot(__DIR__ .$ds."upload".$ds.$sbd.$ds.$tep,"không có tệp");
 		echo "</pre></div>";
